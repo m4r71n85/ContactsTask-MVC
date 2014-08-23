@@ -1,0 +1,12 @@
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Data\bin\Debug\Contacts.Data.dll.config
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Data\bin\Debug\Contacts.Data.dll
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Data\bin\Debug\Contacts.Data.pdb
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Data\bin\Debug\Contacts.Models.dll
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Data\bin\Debug\EntityFramework.dll
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Data\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Data\bin\Debug\Contacts.Models.pdb
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Data\bin\Debug\EntityFramework.xml
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Data\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Data\obj\Debug\Contacts.Data.csprojResolveAssemblyReference.cache
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Data\obj\Debug\Contacts.Data.dll
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Data\obj\Debug\Contacts.Data.pdb

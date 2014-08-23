@@ -1,0 +1,5 @@
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Models\bin\Debug\Contacts.Models.dll
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Models\bin\Debug\Contacts.Models.pdb
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Models\obj\Debug\Contacts.Models.csprojResolveAssemblyReference.cache
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Models\obj\Debug\Contacts.Models.dll
+c:\users\marti_000\documents\visual studio 2013\RentageHouse\Contacts\Contacts.Models\obj\Debug\Contacts.Models.pdb

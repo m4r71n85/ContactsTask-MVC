@@ -1,0 +1,138 @@
+﻿@using Contacts.Models
+@using Contacts.Web.Models
+
+@model IEnumerable<Contacts.Models.ContactInformation>
+
+@{
+    ViewBag.Title = "Contacts info";
+}
+
+<h2>Contacts Info</h2>
+
+<table class="table" id="datatable">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("First Name", "Index",
+                        new { page = ViewBag.CurrentPage, type = ViewBag.CurrentType, sort = (int)ContactColumns.FirstName },
+                             new { @class = ViewBag.CurrentSort == (int)ContactColumns.FirstName ? "selectedColumn" : "" })
+            </th>
+            <th>
+                @Html.ActionLink("Last Name", "Index",
+                         new { page = ViewBag.CurrentPage, type = ViewBag.CurrentType, sort = (int)ContactColumns.LastName },
+                             new { @class = ViewBag.CurrentSort == (int)ContactColumns.LastName ? "selectedColumn" : "" })
+            </th>
+            <th>
+                @Html.ActionLink("Sex", "Index", 
+                        new { page = ViewBag.CurrentPage, type = ViewBag.CurrentType, sort = (int)ContactColumns.Sex },
+                             new { @class = ViewBag.CurrentSort == (int)ContactColumns.Sex ? "selectedColumn" : "" })
+            </th>
+            <th>
+                @Html.ActionLink("Phone", "Index",
+                        new { page = ViewBag.CurrentPage, type = ViewBag.CurrentType, sort = (int)ContactColumns.Phone },
+                             new { @class = ViewBag.CurrentSort == (int)ContactColumns.Phone ? "selectedColumn" : "" })
+            </th>
+            <th>
+                @Html.ActionLink("Status", "Index",
+                        new { page = ViewBag.CurrentPage, type = ViewBag.CurrentType, sort = (int)ContactColumns.Status },
+                             new { @class = ViewBag.CurrentSort == (int)ContactColumns.Status ? "selectedColumn" : "" })
+            </th>
+            <th>
+                @using (Html.BeginForm("Index", "ContactInfo", FormMethod.Get))
+                {
+                    @Html.Hidden("page", (int)ViewBag.CurrentPage)
+                    @Html.Hidden("sort", (int)ViewBag.CurrentSort)
+                    @Html.DropDownList("type", (List<SelectListItem>)ViewBag.OrderType, new { onchange = "this.form.submit();" })
+                }
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sex)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @{
+            string elementClass = "danger";
+                    }
+                    @if (item.Status == Status.Active)
+                    {
+                        elementClass = "success";
+                    }
+                    <span class="label label-@elementClass" id="toggleStatus_@item.Id">
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </span>
+                </td>
+                <td>
+
+                    @using (Ajax.BeginForm("Delete", new AjaxOptions
+                        {
+                            HttpMethod = "Post",
+                            OnSuccess = "deleteSuccess",
+                            Confirm = "Are you sure you want to delete this contact? This cannot be undone.",
+                        }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("id", item.Id)
+                        <input type="submit" value="Delete" class="btn" />
+
+                        @Ajax.ActionLink("Toggle Status", "ToggleStatus", new { id = item.Id },
+                                        new AjaxOptions
+                                        {
+                                            InsertionMode = InsertionMode.Replace,
+                                            UpdateTargetId = "toggleStatus_" + item.Id,
+                                            HttpMethod = "Post",
+                                            OnSuccess = "toggleSuccess"
+                                        },
+                                        new { id = item.Id, @class = "btn btn-primary active" })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@for (int i = 1; i < ViewBag.Pages; i++)
+{
+    if (ViewBag.CurrentPage == i)
+    {
+        <strong>
+            <a href="@Url.Action("Index", new { page = i, sort = ViewBag.CurrentSort, type = ViewBag.CurrentType })">@i</a>
+        </strong>
+    }
+    else
+    {
+        <a href="@Url.Action("Index", new { page = i, sort = ViewBag.CurrentSort, type = ViewBag.CurrentType })">@i</a>
+    }
+}
+
+@section scripts{
+    <script>
+        function toggleSuccess(data) {
+            var targetSelector = $(this).data("ajax-update");
+            if ($(targetSelector).hasClass("label-success")) {
+                $(targetSelector).removeClass("label-success");
+                $(targetSelector).addClass("label-danger");
+            } else {
+                $(targetSelector).removeClass("label-danger");
+                $(targetSelector).addClass("label-success");
+            }
+        }
+
+        function deleteSuccess() {
+            $(this).parents("tr").first().fadeOut();
+        }
+
+    </script>
+}
